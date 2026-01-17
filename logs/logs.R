@@ -1,5 +1,5 @@
 
-log_mensagem <- function(msg, level = "INFO") {
+log_message <- function(msg, level = "INFO") {
   cat(
     sprintf(
       "[%s] [%s] %s\n",
