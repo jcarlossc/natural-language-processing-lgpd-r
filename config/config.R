@@ -1,7 +1,7 @@
 # Caminhos do projeto
 PATH_CONFIG <- "config"
-PATH_RAW <- "dados/dados_base"
-PATH_PROCESSED <- "dados/dados_processados"
+PATH_RAW <- "data/data_raw"
+PATH_PROCESSED <- "dados/data_processed"
 PATH_SCRIPTS <- "scripts_R"
 PATH_LOGS <- "logs"
 

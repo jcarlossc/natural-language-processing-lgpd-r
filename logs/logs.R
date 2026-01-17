@@ -5,7 +5,7 @@ log_mensagem <- function(msg, level = "INFO") {
       "[%s] [%s] %s\n",
       Sys.time(), level, msg
     ),
-    file = "logs/fluxo.log", 
+    file = "logs/pipeline.log", 
     append = TRUE
   )
 } 
