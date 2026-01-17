@@ -1,40 +1,60 @@
 # ------------------------------------------------------------------------------
 # Função: log_message
 # Objetivo:
-#   Registrar mensagens de log em arquivo, incluindo timestamp e nível de severidade,
-#   permitindo auditoria, rastreabilidade e monitoramento do pipeline.
+#   Registrar mensagens de log em arquivo de forma segura,
+#   garantindo que falhas no sistema de logging não interrompam o pipeline.
 #
 # Parâmetros:
-#   msg   -> mensagem textual a ser registrada no log
-#   level -> nível de severidade da mensagem
-#            (ex: "INFO", "WARNING", "ERROR")
-#
-# Observações:
-#   - As mensagens são adicionadas ao arquivo de log (append = TRUE)
-#   - O formato do log segue o padrão:
-#     [timestamp] [level] mensagem
+#   msg   -> mensagem textual a ser registrada
+#   level -> nível de severidade do log (INFO, WARNING, ERROR)
 # ------------------------------------------------------------------------------
 log_message <- function(msg, level = "INFO") {
   
-  # A função cat é utilizada para escrita direta em arquivo,
-  # evitando buffers intermediários e garantindo desempenho em pipelines longos.
-  cat(
+  # tryCatch garante tolerância a falhas no mecanismo de logging,
+  # evitando que erros de I/O interrompam o processamento principal.
+  tryCatch({
     
-    # sprintf formata a mensagem de log de forma padronizada,
-    # garantindo consistência visual.
-    sprintf(
-      "[%s] [%s] %s\n",
-      Sys.time(),        # Data e hora da ocorrência do evento
-      level,             # Nível de severidade do log
-      msg                # Mensagem informativa do evento
-    ),
+    # Verifica se o diretório de logs existe;
+    # caso não exista, tenta criá-lo de forma recursiva.
+    if (!dir.exists(PATH_LOGS)) {
+      dir.create(PATH_LOGS, recursive = TRUE)
+    }
     
-    # Caminho do arquivo de log onde as mensagens serão persistidas.
-    # Em ambientes produtivos, recomenda-se versionar ou rotacionar este arquivo.
-    file = "logs/pipeline.log", 
+    # Constrói o caminho completo do arquivo de log.
+    log_file <- file.path(PATH_LOGS, "pipeline.log")
     
-    # append = TRUE garante que novas mensagens sejam adicionadas ao final do arquivo,
-    # preservando o histórico completo de execução do pipeline.
-    append = TRUE
-  )
-} 
+    # Escreve a mensagem formatada no arquivo de log,
+    # adicionando novas entradas ao final do arquivo.
+    cat(
+      sprintf(
+        "[%s] [%s] %s\n",
+        Sys.time(),    # Data e hora da ocorrência do evento
+        level,         # Nível de severidade do log
+        msg            # Mensagem informativa do evento
+      ),
+      file = log_file,
+      append = TRUE
+    )
+    
+  },
+  
+  # --------------------------------------------------------------------------
+  # Tratamento de ERROS no logging
+  # --------------------------------------------------------------------------
+  error = function(e) {
+    
+    # Em caso de falha no log em arquivo, a mensagem é enviada
+    # para a saída padrão (console) como fallback,
+    # garantindo visibilidade mínima do problema.
+    message(
+      sprintf(
+        "[%s] [LOG_ERROR] Falha ao escrever log: %s",
+        Sys.time(), e$message
+      )
+    )
+    
+    # Não interrompe o pipeline principal.
+    invisible(NULL)
+  })
+}
+
