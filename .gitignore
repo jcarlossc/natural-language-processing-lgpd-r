@@ -1,0 +1,145 @@
+############################################################
+# Projeto: LGPD + LDA + Quarto + Shiny (Profissional)
+############################################################
+
+##############################
+# R / RStudio
+##############################
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+
+# RStudio Project config
+.Rproj.user/
+*.Rproj
+
+# Temporários do R
+.Rtmp/
+tmp/
+temp/
+
+##############################
+# renv (dependências)
+##############################
+# NÃO versionar bibliotecas locais
+renv/library/
+renv/staging/
+renv/python/
+renv/.cache/
+
+# Você normalmente VERSIONA:
+# renv.lock
+# renv/activate.R
+# renv/settings.json
+
+##############################
+# Quarto / RMarkdown
+##############################
+# Pastas geradas na renderização
+.quarto/
+.quarto-cache/
+*_cache/
+*_files/
+
+# Intermediários e exports comuns
+*.utf8.md
+*.knit.md
+*.html
+*.pdf
+*.docx
+
+# Site gerado pelo Quarto (se usar)
+report/_site/
+reports/_site/
+
+##############################
+# Shiny
+##############################
+# Deploy / serviços do RStudio
+rsconnect/
+shinyapps/
+
+# Arquivos temporários possíveis
+shiny/.cache/
+shiny/tmp/
+
+##############################
+# Logs
+##############################
+logs/
+*.log
+
+##############################
+# Dados do projeto
+##############################
+# Dados brutos (não versionar)
+#data/raw/
+# Dados processados gerados pelo pipeline
+#data/processed/
+#data/interim/
+
+# Se você quiser manter as pastas no repositório:
+# data/raw/*
+# !data/raw/.gitkeep
+# data/processed/*
+# !data/processed/.gitkeep
+
+##############################
+# Outputs / Resultados
+##############################
+outputs/
+results/
+figures/
+plots/
+
+##############################
+# Modelos e artefatos gerados
+##############################
+*.rds
+*.RDS
+*.qs
+*.fst
+*.feather
+*.parquet
+*.csv
+*.tsv
+
+##############################
+# Cache de pacotes e downloads
+##############################
+.packrat/
+packrat/
+
+##############################
+# Credenciais e segredos
+##############################
+.env
+.env.*
+*.key
+*.pem
+secrets/
+config/secrets.yml
+config/local.yml
+
+##############################
+# Sistema Operacional
+##############################
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# Linux
+*~
+
+##############################
+# Python (se aparecer no projeto)
+##############################
+__pycache__/
+*.pyc
+.venv/
+venv/
+
