@@ -1,9 +1,7 @@
-# Pacote responsável por estruturas de dados modernas (tibbles),
-# oferecendo melhor legibilidade e integração com o tidyverse.
+# Pacote responsável por estruturas de dados modernas (tibbles).
 library(tibble)
 
-# Pacote utilizado para leitura eficiente e segura de arquivos de texto,
-# com suporte explícito a codificação de caracteres (encoding).
+# Pacote utilizado para leitura eficiente e segura de arquivos de texto.
 library(readr)
 
 # ------------------------------------------------------------------------------
@@ -11,11 +9,12 @@ library(readr)
 # Objetivo:
 #   Carregar um arquivo de texto bruto a partir do sistema de arquivos,
 #   respeitando a codificação informada e estruturando os dados em um tibble
-#   adequado para pipelines de NLP (ex.: LDA, TF-IDF, limpeza textual).
+#   adequado para pipelines de NLP (ex.: LDA, TF-IDF).
 #
 # Parâmetros:
 #   path     : caminho completo ou relativo para o arquivo de texto (.txt)
 #   ENCODING : codificação de caracteres do arquivo (ex.: "UTF-8", "latin1")
+#   text_col : nome da coluna 
 #
 # Retorno:
 #   tibble com:
@@ -27,7 +26,7 @@ library(readr)
 #   - Avisos são registrados, mas não interrompem o pipeline
 # ------------------------------------------------------------------------------
 
-load_text <- function(path, ENCODING) {
+load_text <- function(path, ENCODING, text_col) {
   
   tryCatch({
     
@@ -54,12 +53,15 @@ load_text <- function(path, ENCODING) {
     # posteriores em pipelines tidy (tokenização, limpeza, modelagem).
     tibble_text <- tibble(
       id = seq_along(text_raw),
-      text_law = text_raw
+      text_col = text_raw
     )
     
     # Registra o término do carregamento dos dados,
     # permitindo acompanhamento do processo.
-    log_message("Carregamento do arquivo de texto bem sucedida.")
+    log_message("Carregamento do arquivo de texto bem sucedido.")
+    
+    # Persistência dos dados processados
+    write_csv(tibble_text, file.path(PATH_PROCESSED, "text_loaded.csv"))
     
     # Retorna explicitamente o tibble estruturado,
     # garantindo previsibilidade no fluxo da função.

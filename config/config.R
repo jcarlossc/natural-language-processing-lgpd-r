@@ -14,7 +14,7 @@ PATH_RAW <- "data/data_raw"
 
 # Diretório destinado aos dados processados,
 # resultantes das etapas de limpeza, transformação e enriquecimento.
-PATH_PROCESSED <- "dados/data_processed"
+PATH_PROCESSED <- "data/data_processed"
 
 # Diretório que armazena os scripts R do projeto,
 # incluindo funções de pipelines e módulos analíticos.
