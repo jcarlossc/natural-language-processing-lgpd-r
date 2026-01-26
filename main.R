@@ -2,12 +2,16 @@ source("config/config.R")
 source(file.path(PATH_LOGS, "pipeline_logs.R"))
 source(file.path(PATH_SCRIPTS, "loader_text.R"))
 source(file.path(PATH_SCRIPTS, "clean_text.R"))
+# source(file.path(PATH_SCRIPTS, "dtm_process.R"))
 
-file <- "lgpd.txt"
+file_base <- "lgpd.txt"
 
-text_loaded <- load_text(file.path(PATH_RAW, file), ENCODING, text_col)
-text_loaded
+text_loaded <- load_text(file.path(PATH_RAW, file_base), ENCODING)
 
-text_clean <- clean_text(text_loaded, ENCODING, LANGUAGE, text_col)
+text_clean <- clean_text(text_loaded, ENCODING, LANGUAGE)
+
 text_clean
+
+
+
 
