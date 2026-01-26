@@ -44,7 +44,7 @@ library(tm)
 #   - Salva o resultado em disco para reprodutibilidade
 # ----------------------------------------------------------------------------
 
-clean_text <- function(text, encoding, language, text_col) {
+clean_text <- function(text, encoding, language) {
   
   tryCatch({
     
@@ -91,18 +91,15 @@ clean_text <- function(text, encoding, language, text_col) {
         text_col = str_squish(text_col)
       ) %>%
       filter(!stringi::stri_isempty(stringi::stri_trim_both(text_col))) %>%
-      unnest_tokens(work, text_col) %>%
+      unnest_tokens(word, text_col) %>%
       filter(
-        nchar(work) > 3,
-        !work %in% stopwords(language),
-        !work %in% stopwords_juridicas
+        nchar(word) > 3,
+        !word %in% stopwords(language),
+        !word %in% stopwords_juridicas
       ) %>%
       mutate(
-        work_stem = SnowballC::wordStem(work, language = "porter")
+        word_stem = SnowballC::wordStem(word, language = "porter")
       )
-    
-    # Persistência dos dados processados
-    write_csv(tokens, file.path(PATH_PROCESSED, "text_processed.csv"))
 
     # Registro de fim do processo
     log_message("Texto limpo, tokenizado, stemizado e salvo com sucesso")

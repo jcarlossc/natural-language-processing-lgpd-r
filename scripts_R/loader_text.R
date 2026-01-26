@@ -26,7 +26,7 @@ library(readr)
 #   - Avisos são registrados, mas não interrompem o pipeline
 # ------------------------------------------------------------------------------
 
-load_text <- function(path, ENCODING, text_col) {
+load_text <- function(path, ENCODING) {
   
   tryCatch({
     

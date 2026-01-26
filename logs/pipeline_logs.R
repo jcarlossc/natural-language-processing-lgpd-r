@@ -38,9 +38,7 @@ log_message <- function(msg, level = "INFO") {
     
   },
   
-  # --------------------------------------------------------------------------
   # Tratamento de ERROS no logging
-  # --------------------------------------------------------------------------
   error = function(e) {
     
     # Em caso de falha no log em arquivo, a mensagem é enviada
