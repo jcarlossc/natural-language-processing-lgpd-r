@@ -4,6 +4,7 @@ source(file.path(PATH_SCRIPTS, "loader_text.R"))
 source(file.path(PATH_SCRIPTS, "clean_text.R"))
 source(file.path(PATH_SCRIPTS, "dtm_text.R"))
 source(file.path(PATH_SCRIPTS, "lda_text.R"))
+source(file.path(PATH_SCRIPTS, "tf_idf_text.R"))
 
 file_base <- "lgpd.txt"
 
@@ -26,4 +27,13 @@ lda_model <- create_lda(
   text_dtm = dtm_lda,
   k = 6
 )
+
+# 3. Preparação específica para análises vetoriais.
+dtm_tfidf_clean <- text_dtm[
+  slam::row_sums(text_dtm) > 0,
+]
+
+text_tf_idf <- create_tfidf(dtm_tfidf_clean)
+
+
 
