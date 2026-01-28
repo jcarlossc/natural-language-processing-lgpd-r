@@ -16,6 +16,9 @@ create_lda <- function(
   
   tryCatch({
     
+    # Registro de início do processo
+    log_message("Iniciando processamento LDA.")
+    
     # Validação de entrada.
     if (!inherits(text_dtm, "DocumentTermMatrix")) {
       stop("O objeto fornecido não é uma DocumentTermMatrix.")
@@ -46,6 +49,9 @@ create_lda <- function(
       method = "Gibbs",
       control = list(seed = seed)
     )
+    
+    # Registro de início do processo
+    log_message("Processamento LDA finalizado com sucesso.")
     
     return(lda_model)
     
