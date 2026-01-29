@@ -4,6 +4,7 @@ source(file.path(PATH_SCRIPTS, "loader_text.R"))
 source(file.path(PATH_SCRIPTS, "clean_text.R"))
 source(file.path(PATH_SCRIPTS, "dtm_text.R"))
 source(file.path(PATH_SCRIPTS, "lda_text.R"))
+source(file.path(PATH_GRAPHICS, "graphic_lda.R"))
 
 file_base <- "lgpd.txt"
 
@@ -27,6 +28,10 @@ lda_model <- create_lda(
   k = 6
 )
 
+plot_lda_top_terms(
+  lda_model = lda_model,
+  top_n = 10
+)
 
 
 

@@ -24,6 +24,9 @@ PATH_SCRIPTS <- "scripts_R"
 # garantindo rastreabilidade, auditoria e monitoramento das execuções.
 PATH_LOGS <- "logs"
 
+# Diretório responsável pelo armazenamento dos arquivos de gráficos.
+PATH_GRAPHICS <- "graphics"
+
 
 # ------------------------------------------------------------------------------
 # Definição de parâmetros globais de processamento
