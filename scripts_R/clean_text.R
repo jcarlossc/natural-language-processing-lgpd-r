@@ -49,7 +49,7 @@ clean_text <- function(text, encoding, language) {
   tryCatch({
     
     # Registro de início do processo
-    log_message("Iniciando limpeza do texto")
+    log_message("Iniciando limpeza, tokenização e stemização do texto")
     
     # Validações de entrada (programação defensiva)
     if (!inherits(text, "data.frame")) {
