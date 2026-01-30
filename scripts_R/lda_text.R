@@ -1,4 +1,9 @@
+# Pacote projetado especificamente para realizar modelagem de 
+# tópicos (topic modeling) em coleções de documentos textuais. 
 library(topicmodels)
+
+# Pacote fornece estruturas de dados e algoritmos eficientes para 
+# manipular matrizes e arrays esparsos (com muitos zeros) 
 library(slam)
 
 # ============================================================
@@ -57,6 +62,7 @@ create_lda <- function(
     
   }, error = function(e) {
     
+    # Mensagem de erro no console.
     message(
       paste(
         "[ERRO] Falha ao ajustar o modelo LDA:",
@@ -67,12 +73,14 @@ create_lda <- function(
     
   }, warning = function(w) {
     
+    # Mensagem de aviso no console.
     message(
       paste(
         "[AVISO] LDA gerou aviso:",
         w$message
       )
     )
+    # silenciamento controlado de warnings.
     invokeRestart("muffleWarning")
     
   })

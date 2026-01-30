@@ -34,5 +34,8 @@ plot_lda_top_terms(
   top_n = 10
 )
 
-plot_top_terms_dtm(text_dtm)
+plot_top_terms_dtm(
+  text_dtm,
+  top_n = 20
+  )
 
