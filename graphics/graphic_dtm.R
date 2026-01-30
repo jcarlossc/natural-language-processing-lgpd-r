@@ -81,6 +81,9 @@ plot_top_terms_dtm <- function(text_dtm, top_n = 20) {
       ) +
       theme_minimal()
     
+    # Registro de término da construção do gráfico de termos mais frequentes.
+    log_message("Término da geração de gráfico de termos mais frequentes.")
+    
     # Retorna explicitamente o tibble estruturado,
     # garantindo previsibilidade no fluxo da função.
     return(plot)

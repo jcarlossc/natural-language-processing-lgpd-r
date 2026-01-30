@@ -105,6 +105,5 @@ create_dtm <- function(
       )
     )
     invokeRestart("muffleWarning")
-    
   })
 }
