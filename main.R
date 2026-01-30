@@ -5,6 +5,7 @@ source(file.path(PATH_SCRIPTS, "clean_text.R"))
 source(file.path(PATH_SCRIPTS, "dtm_text.R"))
 source(file.path(PATH_SCRIPTS, "lda_text.R"))
 source(file.path(PATH_GRAPHICS, "graphic_lda.R"))
+source(file.path(PATH_GRAPHICS, "graphic_dtm.R"))
 
 file_base <- "lgpd.txt"
 
@@ -33,5 +34,5 @@ plot_lda_top_terms(
   top_n = 10
 )
 
-
+plot_top_terms_dtm(text_dtm)
 
